@@ -16,6 +16,7 @@ module TestProf
             end
 
             def rollback_transaction
+              caller.each { |c| p c }
               ::ActiveRecord::Base.connection_handler.connection_pool_list(:writing).each do |pool|
                 pool.unpin_connection!
               end
